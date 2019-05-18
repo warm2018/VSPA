@@ -287,19 +287,24 @@ class insertion:
 			 #检查前面的步骤已对new_label全部进行操作
 
 
+
 	def update(self):
 		## 每一个时间间隔随机生成动态的需求并更新现阶段的状态
 		self.visited()
 		## 当前车辆行驶状态
+
 		self.merge()
 		##KNN算法将动态需求插入到原有行驶路线中
-
 		##通过前面两个步骤已经得到更新后的subroutes,以及旧路径的出发时刻，
 		##接下来需要重新运用变邻域算法来优化插入方案。
+
 		self.VNS()
 		##VNS的输入有self.remain_subroutes, self.subtime, self.substart 
-		##self.demand，输出的有
-		
+		##对于VNS算法，它的输入是insetion类的属性值，但在VNS算法中不能
+		##insertion类的属性值改变，只能在最后算出结果来之后才将属性值更新。
+		## 因此对于VNS下属的functions,除了全局变量以外，
+		## 其余一律不得使用insertion类的属性值
+
 	def VNS(self):
 		## 变邻域算法，通过邻域之间的跳动搜索、抖动算子，来寻找较优解\
 		VNS_iterations = 100
@@ -309,7 +314,7 @@ class insertion:
 				for j in range(0, neighbourhood_size):
 					solution = self.stochastic_2_opt()
 				solution = self.local_search()
-				if (solution[1] < best_solution[1]):
+				if (solution[-1] < best_solution[-1]):
 					best_solution = copy.deepcopy(solution) 
 					break
 					##如果找到了一个比当前最优解还好的解，则将最优解更新，并跳出循环，重新从第一个邻域开始搜索。
@@ -317,34 +322,45 @@ class insertion:
 			print("Iteration = ", count, "->", best_solution)
 		return best_solution
 
+
 	# Function: Stochastic 2_opt
 	def stochastic_2_opt(self):
 		####随机选择两条路径交换节点
 		##规则：每次随机选取两个在空间上距离最近的点，交换
 		##目前可以用随机选取两个点交换
 		remaining_subroutes = copy.deepcopy(self.remain_subroutes)   
+		remaining_subtime = copy.deepcopy(self.remain_subtime)
 		##得到余下的子路径  
 		##将余下的子路径按照一定规则交换
 		##[[],[]...]
-		for i in range(len(remaining_subroutes)):
-			#随机选取两条子线路
-			subroute1,subroute2 = random.sample(range(len(remaining_subroutes)), 2)
-			point1 = random.sample(range(len(remaining_subroutes[subroute1])),1)
-			pont2 = radom.sample(range(len(remaining_subroutes[subroute2])),1)
+		#随机选取两条子线路
+		subroute1,subroute2 = random.sample(range(len(remaining_subroutes)), 2)
+		#在第一条子路径中随机选一订单点
+		point1 = random.sample(range(len(remaining_subroutes[subroute1])),1)
+		#在第二条子路径中随机选取一订单点
+		point2 = radom.sample(range(len(remaining_subroutes[subroute2])),1)
+		#将两个订单点交换
+		remaining_subroutes[subroute1][point1],remaining_subroutes[subroute2][point2] = \
+		remaining_subroutes[subroute2][point2],remaining_subroutes[subroute1][point1]
 
-
-			
-		return best_route
+		subterminal = self.updatetime(remaining_subtime,remaining_subroutes)
+		fit = self.obj_value(remaining_subroutes)
+		remaining_subroutes.append(fit)
+		## 将remaining_subroutes 末尾添加fit,便于解的目标值的读取。
+		## [[],[],[],2999.90]
+		return remaining_subroutes
 
 
 	# Function: Local Search
-	def local_search(self):
+	def local_search(self, max_attempts = 50, neighbourhood_size = 5):
 		count = 0
 		solution = copy.deepcopy(city_tour) 
 		while (count < max_attempts): 
 			for i in range(0, neighbourhood_size):
-				candidate = stochastic_2_opt(Xdata, solution)
-			if candidate[1] < solution[1]:
+				candidate = self.stochastic_2_opt()
+			if candidate[-1] < solution[-1]:
+				#如果当前解优于一开始设定得最优解，则将局部搜索设定得
+				#开始解设定为当前解 继续从头开始搜索，直至无法找出比当前要优秀的解。
 				solution  = copy.deepcopy(candidate)
 				count = 0
 			else:
@@ -352,9 +368,10 @@ class insertion:
 		return solution 
 	# Function: Variable Neighborhood Search
 
-	def updatetime(self):
+
+	def updatetime(remain_subtime,remain_subroutes):
 		calculateDist = lambda x1, y1, x2, y2: math.sqrt(((x1-x2) ** 2) + ((y1 - y2) ** 2 ))
-		for subtime,subroute in zip(self.remain_subtime,self.remain_subroutes):
+		for subtime,subroute in zip(remain_subtime,remain_subroutes):
 			starttime = subtime[0]
 			current_time = starttime
 			i = 1
@@ -367,22 +384,19 @@ class insertion:
 				subtime[i] = current_time
 				i += 1
 			### update the time for every customer id  
-			Terminal_distance = calculateDist(self.demand[3][CustNumber+1],self.demand[4][CustNumber+1],self.demand[3][subroute[i-1]], self.demand[4][subroute[i-1]])
-				
+			Terminal_distance = calculateDist(self.demand[3][CustNumber+1],self.demand[4][CustNumber+1],self.demand[3][subroute[i-1]], self.demand[4][subroute[i-1]])				
 			time = Terminal_distance / speed
 			terminaltime = current_time + time
-			self.subterminal.append(terminaltime)
-		datacount = 0
-		for i in self.subtime:
-			for j in i:
-				self.data[1][datacount] = j
-				datacount += 1
+			subterminal.append(terminaltime)
+		return subterminal
+
 
 	# Function: Distance
-	def obj_value(self): 
+	def obj_value(remain_subroutes): 
+		## 给一个剩余的子路径，此函数将计算出他的适应值
 		calculateDist = lambda x1, y1, x2, y2: math.sqrt(((x1-x2) ** 2) + ((y1 - y2) ** 2 ))
 		fit = 0; dist_cost = 0; 
-		subroutes = self.remain_subroutes
+		subroutes = remain_subroutes
 		tempsub = deepcopy(subroutes)
 		dist = []
 		for subroute in tempsub:
@@ -397,7 +411,8 @@ class insertion:
 		dist_cost = sum(dist) * costunitdist
 
 		time_cost = 0
-		for subroute,subterminaltime in zip(self.subroutes,self.subterminal):
+		for subroute,subterminaltime in zip(subroutes,subterminal):
+			## subterminal =[0,2,1] 每个子路径到达终点的时刻
 			for cusid in subroute:
 				wait = expect_low[cusid] - subterminaltime
 				delay = subterminaltime - expect_upper[cusid]
@@ -410,7 +425,7 @@ class insertion:
 					print("订单%d延误%.2f个单位时间"%(cusid,delay))
 
 		start_cost = 0
-		start_number = len(self.subroutes)
+		start_number = len(subroutes)
 		start_cost = start_number * VehStartCost
 		## v车辆启动费用
 		detour_cost = 0
@@ -439,5 +454,5 @@ class insertion:
 			print("start_cost",start_cost)
 			print("detour_cost",detour_cost)
 
-		fitness = 1.0 / total_cost
+		fitness =  total_cost
 		return fitness
