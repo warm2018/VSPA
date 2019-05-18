@@ -7,7 +7,9 @@ import copy
 import numpy as np
 import math 
 import collections
+from VSPA_1 import Gene
 
+DEBUG = 0
 ## SOME base parameters for this model
 X_coordinate = [-10,56, 66, 56, 88, 88, 24, 40, 32, 16, 88, 48, 32, 80, 48, 23, 48, 16, 8, 32, 24, 72, 72, 72, 88, 34, 120]
 Y_coordinate = [-10,56, 78, 27, 72, 32, 48, 48, 80, 69, 96, 96, 104, 56, 40, 16, 8, 32, 48, 64, 96, 104, 32, 16, 8, 56, 60]
@@ -46,33 +48,37 @@ MAX_Y = 120
 MIN_Y = -10
 
 
+
 class GA:
 	def __init__(self,best):
 		'''
 		best: the best gene which obtained in last GA algorithm step
 		'''
-		self.solution = best.solution
+		self.solution = [[19, 25, 21, 23, 22, 24, 9, 6, 7, 11, 17, 18, 16, 20, 3, 1, 2, 4, 12, 15, 14, 13, 8, 10, 5], [15.600000000000001, 15.8, 17.3, 19.5, 19.9, 20.599999999999998, 5.1, 5.699999999999999, 6.1, 7.3, 11.1, 11.5, 12.9, 15.2, 3.2, 3.9000000000000004, 4.5, 5.1, 10.3, 12.5, 13.4, 14.3, 2.4, 3.9, 5.5]]
 		## 上一阶段得到的染色体
-		self.subroutes = best.subroutes
-		self.subtime = best.subtime
+		self.subroutes = [[19, 25, 21, 23, 22, 24], [9, 6, 7, 11], [17, 18, 16, 20], [3, 1, 2, 4], [12, 15, 14, 13], [8, 10, 5]]
+		self.subtime = [[15.600000000000001, 15.8, 17.3, 19.5, 19.9, 20.599999999999998], [5.1, 5.699999999999999, 6.1, 7.3], [11.1, 11.5, 12.9, 15.2], [3.2, 3.9000000000000004, 4.5, 5.1], [10.3, 12.5, 13.4, 14.3], [2.4, 3.9, 5.5]]
+		self.demand = initial_demand
 
 
 class insertion:
 	def __init__(self,ga_solution):
 		self.current = 0
-		self.solution = GA.solution[0]
-		self.subroutes = GA.subroutes ## 子路径 [[],[]]
-		self.subtime = GA.subtime## 子路径对应的到达时刻 [[],[]]
+		self.solution = ga_solution.solution[0]
+		self.subroutes = ga_solution.subroutes ## 子路径 [[],[]]
+		self.subtime = ga_solution.subtime## 子路径对应的到达时刻 [[],[]]
 		self.remain_subroutes = []
 		self.remain_subtime =[]
 		self.subload = []
 		self.sub_remain_capacity = []
 		self.substart = []
-		self.demand = GA.demand #订单需求人数[[demand]，[expect_low]，[expect_upper],[corX][corY]]
+		self.demand = ga_solution.demand #订单需求,包括需求人数、时间窗期望，
+		## [[demand]，[expect_low]，[expect_upper],[corX][corY]]
 		## [[coorx].[coory]]
 		###将demand改成字典格式。id为key,值为四个属性、
-		self.new_solution = []
 		self.subterminal = []
+		self.visited_order = []
+		self.visited_ordertime = []
 
 
 	def visited(self):
@@ -84,7 +90,7 @@ class insertion:
 		for i in range(len(temp_subtime)):
 			load = 0
 			for j in range(len(temp_subtime[i])):
-				load += self.demand[self.subroutes[i][j]]
+				load += self.demand[0][self.subroutes[i][j]]
 				if temp_subtime[i][j] > self.current:
 					#self.subroutes[i].insert(j,-1)
 					#self.subtime[i].insert(j,-1)
@@ -94,9 +100,12 @@ class insertion:
 					if j+1 <= len(temp_subtime[i]):
 						##防止超出索引
 					   self.remain_subroutes.append(temp_subroutes[i][j:])
+					   self.visited_order.append(temp_subroutes[i][:j])
+					   print("eeeee",self.visited_order)
 					   self.remain_subtime.append(temp_subtime[i][j:])
-					assert(len(self.remain_subroutes == len(self.remain_subtime)))
-					   #更新remain
+					   self.visited_ordertime.append(temp_subtime[i][:j])
+					assert(len(self.remain_subroutes) == len(self.remain_subtime))
+					   #更新remain,断言
 					break ##跳出第二个循环
 		## 此函数将已访问的订单与还未访问的订单区别开来，方便下一步插入优化操作
 
@@ -115,13 +124,16 @@ class insertion:
 					self.demand[2][i] += min(self.demand[2][i] + random.randint(4, 8),MAX_TW)
 					record_delay.append(i) ##还需记录延误的订单
 		for subroute,subtime in zip(self.remain_subroutes,self.remain_subtime):
+			sub_count =0
 			load = 0
 			for i in record_delay:
 				if i in subroute:
+					time_index = subroute.index(i)
 					subroute.remove(i)##如果改点延误，则将其从子路径中删除
-					subtime.pop(subroute.index(i))##子路径的时间也随之删除
+					subtime.pop(time_index)##子路径的时间也随之删除
 					load += self.demand[0][i]
-			self.sub_remain_capacity.append(VehicleCpacity - self.subload + load)
+			self.sub_remain_capacity.append(VehicleCpacity - self.subload[sub_count] + load)
+			sub_count += 1
 
 			## 重新更新时间 子路径的时间
 		for subroute,subtime in zip(self.remain_subroutes,self.remain_subtime):
@@ -145,14 +157,14 @@ class insertion:
 		start = len(self.demand[0])
 		Ratio_new =  0.1
 		## 新顾客产生的比率
-		max_number = CustNumber * Ratio_new    
+		max_number = int(CustNumber * Ratio_new)  
 		real_number = random.randint(0, max_number)       
 		new_corx =[]; new_cory=[];  new_number=[]; new_low=[]; new_upper =[]                                                                                                                                                                                                                                                                                                                                                              
 		for i in range(real_number):
 			temp_corx = random.randint(MIN_X, MAX_X)
 			temp_cory = random.randint(MIN_Y, MAX_Y)
 			temp_number = random.randint(1,3)
-			temp_expect_low = current_time + random.randint(4,6)
+			temp_expect_low = self.current + random.randint(5,10)
 			temp_expect_upper = temp_expect_low + random.randint(4, 6)
 			##随机生成
 			demand =[temp_number,temp_expect_low,temp_expect_upper,temp_corx,temp_cory]
@@ -164,8 +176,8 @@ class insertion:
 		return [start,end]
 
 
-	def normalize(coorX,cooY,time):
-		assert(len(coorX) == len(cooY) == len(time))
+	def normalize(self,coorX,coorY,time):
+		assert(len(coorX) == len(coorY) == len(time))
 		for i in range(len(coorX)):
 			coorX[i] = (coorX[i] - MIN_X) / (MAX_X - MIN_X)
 			coorY[i] = (coorY[i] - MIN_Y) / (MAX_Y - MIN_Y)
@@ -218,8 +230,7 @@ class insertion:
 			((y1 - y2) ** 2 ) + (z1-z2) ** 2)
 		k = int(len(coorX_old) * 0.2) ## KNN算法的 K值
 
-
-		for i in range(new_id):
+		for i in range(len(new_id)):
 			Distance = [ calculateDist(coorX_new[i], coorY_new[i], time_new[i], \
 				coorX_old[j], coorY_old[j], time_old[j]) for j in range(len(coorX_old))]
 			Dis_matrix  = np.array(Distance)
@@ -235,7 +246,6 @@ class insertion:
 			for label,count in labels:
 				## 对于每一一条候选的线路，必须在其容量满足的情况下才能插入
 				if self.sub_remain_capacity[label] >= self.demand[0][new_id[i]]:
-					print("the new order %d label is %d:" % (new_id[i],label))
 					new_label[i] = label               
 					first_index = K_mark.index(label)
 					##在根据索引值从K_index中找到其在Dis_matrix中的索引 
@@ -244,11 +254,12 @@ class insertion:
 					Nearsest_ID = old_id[Nearsest_index]  
 					##将这个新的点插入到旧的线路中去
 					##更新self.remain_subroutes：
-					for subroute in self.remain_subroutes:
+					for subroute,subtime in zip(self.remain_subroutes,self.remain_subtime):
 						for sub_id_index in range(len(subroute)):
 							if subroute[sub_id_index] == Nearsest_ID:
 								##将符合条件的订单插入至子路径中
 								subroute.insert(sub_id_index + 1,new_id[i])
+								subtime.insert(sub_id_index + 1,new_id[i])
 					self.sub_remain_capacity[label] -= self.demand[0][new_id[i]]
 					## 更新剩余路径
 					break     
@@ -270,8 +281,9 @@ class insertion:
 			if new_route[0] != []:
 				##如果真实存在还未插入的订单
 				##则将其重新加入到一条路线中去
+				sub_newroute = []
 				load = 0		
-				for order in new_route: 
+				for order in new_route[0]: 
 					if load <= VehicleCpacity:
 						order_demand = self.demand[0][order]
 						load += order_demand
@@ -283,9 +295,8 @@ class insertion:
 						load = 0
 				if sub_newroute !=[]:
 					self.remain_subroutes.append(sub_newroute)
-			assert(new_label.find(-1) == -1)
-			 #检查前面的步骤已对new_label全部进行操作
 
+			 #检查前面的步骤已对new_label全部进行操作
 
 
 	def update(self):
@@ -304,16 +315,28 @@ class insertion:
 		##insertion类的属性值改变，只能在最后算出结果来之后才将属性值更新。
 		## 因此对于VNS下属的functions,除了全局变量以外，
 		## 其余一律不得使用insertion类的属性值
+	def get_init_fit(self):
+
+		subterminal = self.updatetime(self.remain_subtime, self.remain_subroutes)
+		fit = self.obj_value(self.remain_subroutes,subterminal)
+		self.remain_subroutes.append(fit)
 
 	def VNS(self):
 		## 变邻域算法，通过邻域之间的跳动搜索、抖动算子，来寻找较优解\
 		VNS_iterations = 100
 		neighbourhood_size = 10
+		count = 0
+		self.get_init_fit()
+		initial_route = copy.deepcopy(self.remain_subroutes)
+		initial_time = copy.deepcopy(self.remain_subtime)
+
+		best_solution = self.remain_subroutes
+		initial_route.pop(-1)## 去掉初始方案尾部的目标函数值
 		while (count < VNS_iterations):## 不断地在邻域内来搜索
 			for i in range(0, neighbourhood_size):##搜索某个邻域里的解空间
 				for j in range(0, neighbourhood_size):
-					solution = self.stochastic_2_opt()
-				solution = self.local_search()
+					solution = self.stochastic_2_opt(initial_route)
+				solution = self.local_search(solution)
 				if (solution[-1] < best_solution[-1]):
 					best_solution = copy.deepcopy(solution) 
 					break
@@ -324,27 +347,27 @@ class insertion:
 
 
 	# Function: Stochastic 2_opt
-	def stochastic_2_opt(self):
+	def stochastic_2_opt(self,route):
 		####随机选择两条路径交换节点
 		##规则：每次随机选取两个在空间上距离最近的点，交换
 		##目前可以用随机选取两个点交换
-		remaining_subroutes = copy.deepcopy(self.remain_subroutes)   
-		remaining_subtime = copy.deepcopy(self.remain_subtime)
+		remaining_subroutes = copy.deepcopy(route) 
+		remaining_subtime = self.remain_subtime
 		##得到余下的子路径  
 		##将余下的子路径按照一定规则交换
 		##[[],[]...]
 		#随机选取两条子线路
 		subroute1,subroute2 = random.sample(range(len(remaining_subroutes)), 2)
 		#在第一条子路径中随机选一订单点
-		point1 = random.sample(range(len(remaining_subroutes[subroute1])),1)
+		point1 = random.sample(range(len(remaining_subroutes[subroute1])),1)[0]
 		#在第二条子路径中随机选取一订单点
-		point2 = radom.sample(range(len(remaining_subroutes[subroute2])),1)
+		point2 = random.sample(range(len(remaining_subroutes[subroute2])),1)[0]
 		#将两个订单点交换
 		remaining_subroutes[subroute1][point1],remaining_subroutes[subroute2][point2] = \
 		remaining_subroutes[subroute2][point2],remaining_subroutes[subroute1][point1]
 
 		subterminal = self.updatetime(remaining_subtime,remaining_subroutes)
-		fit = self.obj_value(remaining_subroutes)
+		fit = self.obj_value(remaining_subroutes,subterminal)
 		remaining_subroutes.append(fit)
 		## 将remaining_subroutes 末尾添加fit,便于解的目标值的读取。
 		## [[],[],[],2999.90]
@@ -352,12 +375,12 @@ class insertion:
 
 
 	# Function: Local Search
-	def local_search(self, max_attempts = 50, neighbourhood_size = 5):
+	def local_search(self, route, max_attempts = 50, neighbourhood_size = 5):
 		count = 0
-		solution = copy.deepcopy(city_tour) 
+		solution = copy.deepcopy(route) 
 		while (count < max_attempts): 
 			for i in range(0, neighbourhood_size):
-				candidate = self.stochastic_2_opt()
+				candidate = self.stochastic_2_opt(route[:-1])
 			if candidate[-1] < solution[-1]:
 				#如果当前解优于一开始设定得最优解，则将局部搜索设定得
 				#开始解设定为当前解 继续从头开始搜索，直至无法找出比当前要优秀的解。
@@ -369,8 +392,9 @@ class insertion:
 	# Function: Variable Neighborhood Search
 
 
-	def updatetime(remain_subtime,remain_subroutes):
+	def updatetime(self,remain_subtime,remain_subroutes):
 		calculateDist = lambda x1, y1, x2, y2: math.sqrt(((x1-x2) ** 2) + ((y1 - y2) ** 2 ))
+		subterminal = []
 		for subtime,subroute in zip(remain_subtime,remain_subroutes):
 			starttime = subtime[0]
 			current_time = starttime
@@ -392,12 +416,12 @@ class insertion:
 
 
 	# Function: Distance
-	def obj_value(remain_subroutes): 
+	def obj_value(self,remain_subroutes,subterminal): 
 		## 给一个剩余的子路径，此函数将计算出他的适应值
 		calculateDist = lambda x1, y1, x2, y2: math.sqrt(((x1-x2) ** 2) + ((y1 - y2) ** 2 ))
 		fit = 0; dist_cost = 0; 
 		subroutes = remain_subroutes
-		tempsub = deepcopy(subroutes)
+		tempsub = copy.deepcopy(subroutes)
 		dist = []
 		for subroute in tempsub:
 			#subroute.insert(0,0)  
@@ -453,6 +477,32 @@ class insertion:
 			print("dist_cost",dist_cost)
 			print("start_cost",start_cost)
 			print("detour_cost",detour_cost)
-
 		fitness =  total_cost
 		return fitness
+
+def update_last(this_step,last_step):
+	for i in this_step:
+		pass
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+
+	initial_demand = [[],[],[],[],[]]
+	initial_demand[0] = demand
+	initial_demand[1] = expect_low
+	initial_demand[2] = expect_upper
+	initial_demand[3] = X_coordinate
+	initial_demand[4] = Y_coordinate
+
+	best = Gene()
+	ga_solution = GA(best)
+	##inherit BEST solution class which got in last step
+	insertion1 = insertion(ga_solution)
+	insertion1.update()
