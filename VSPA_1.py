@@ -100,7 +100,7 @@ class Gene:
 		vehicle_load = 0
 		last_customer_id = 0
 		for i in range(len(data_1)):
-			temp_demand = demand[i]
+			temp_demand = demand[data_1[i]]
 			updated_vehicle_load = vehicle_load + temp_demand
 			if updated_vehicle_load <= VehicleCpacity:
 				sub_route.append(data_1[i])
@@ -515,9 +515,15 @@ if DEBUG:
 	print("START")
 	fontsizes = itertools.cycle([10,10,14,10,10,14])
 	gene = Gene(data=sampleSolution1)
-	ax2 = plt.subplot()
-	plot(gene, ax2)
-	plt.pause(60)
+	#ax2 = plt.subplot()
+	#plot(gene, ax2)
+	#plt.pause(60)
+	for subroute in gene.subroutes:
+		load = 0
+		for order in subroute:
+			load += demand[order]
+		print(load)
+
 	print(gene.subroutes)
 	print(gene.subterminal)
 	print(gene.subtime)

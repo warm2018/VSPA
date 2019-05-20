@@ -1,5 +1,10 @@
 import random
 import collections
-list1 = [[1,2,3,4],[6,3,3,3,2,2,1,2],[3,2,21],1000]
-list2 = list1[0][2:]
-print(list2)
+
+K_mark = [-1,-3,-4,-9,0,0,0,-3,-2]
+
+l1 = K_mark[2:]
+
+l2 = K_mark[:2]
+
+print(l1,l2)
