@@ -12,12 +12,12 @@ import time
 
 DEBUG = 0
 
-sampleSolution1 = [[3, 5, 1, 8, 2, 4, 25, 23, 24, 21, 6, 7, 9, 10, 15, 14, 12, 11, 17, 16, 18, 13, 19, 22, 20], [2.0, 2.8, 3.8, 4.6, 5.5, 6.1, 18.9, 20.299999999999997, 20.699999999999996, 23.099999999999994, 5.8, 6.2, 7.0, 8.9, 9.8, 10.700000000000001, 12.3, 12.700000000000001, 12.000000000000002, 13.000000000000002, 14.400000000000002, 16.200000000000003, 16.0, 17.3, 19.3]]
+sampleSolution1 = [[12, 9, 11, 6, 7, 8, 10, 18, 17, 19, 21, 2, 3, 1, 5, 4, 22, 23, 24, 25, 20, 15, 16, 14, 13], [9.2, 10.299999999999999, 11.299999999999999, 5.4, 5.800000000000001, 6.6000000000000005, 8.3, 18.0, 18.4, 19.299999999999997, 20.699999999999996, 2.0, 2.6, 4.0, 5.0, 6.0, 16.0, 16.4, 16.799999999999997, 18.599999999999998, 19.599999999999998, 13.7, 14.399999999999999, 15.2, 16.099999999999998]]
 sampleSolution2 = [[6, 3, 7, 1, 5, 2, 8, 11, 12, 4, 15, 14, 9, 10, 18, 16, 20, 13, 17, 25, 23, 19, 22, 24, 21], [0.2, 1.2, 1.9, 2.3, 3.3, 4.6, 4.8, 5.3999999999999995, 5.8, 7.4, 8.700000000000001, 9.600000000000001, 10.700000000000001, 12.600000000000001, 10.7, 12.1, 14.399999999999999, 16.099999999999998, 14.899999999999999, 15.7, 17.099999999999998, 18.7, 17.3, 18.0, 20.4]]
 
 Popuation = 200
 ## The number of chromosome in a pupolation
-Iteration = 500
+Iteration = 800
 ## The number of iterations in one process
 CustNumber = 25
 ## The number of orders which the online platform provide
@@ -28,7 +28,7 @@ Terminal = CustNumber + 1
 VehicleCpacity = 7
 ## capacity for per CAR
 
-VaryProb = 0.1
+VaryProb = 0.2
 ## the probability of gene mutation
 EliteProb = 0.2
 ## the probability of choosing elites ihen operate mutation process
@@ -36,8 +36,8 @@ SubsaveProb = 0.2
 ## the subroutes saving probility for crossing
 
 ## SOME base parameters for this model
-X_coordinate = [-10,56, 66, 56, 88, 88, 24, 40, 32, 16, 88, 48, 32, 80, 48, 23, 48, 16, 8, 32, 24, 72, 72, 72, 88, 34, 120]
-Y_coordinate = [-10,56, 78, 27, 72, 32, 48, 48, 80, 69, 96, 96, 104, 56, 40, 16, 8, 32, 48, 64, 96, 104, 32, 16, 8, 56, 60]
+X_coordinate = [0,56, 2, 10, 88, 88, 24, 40, 32, 16, 88, 48, 32, 80, 48, 23, 48, 16, 8, 32, 24, 72, 72, 72, 88, 34, 120]
+Y_coordinate = [0,56, 3, 27, 72, 32, 48, 48, 80, 69, 45, 96, 29, 56, 40, 16, 8, 32, 48, 64, 96, 104, 32, 16, 8, 56,100]
 demand       = [0,1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1,0]
 expect_low   = [0,4, 4, 4, 4, 6, 6, 6, 6, 10, 10, 10, 10, 15, 15, 15, 15, 18, 18, 18, 18, 22, 22, 22, 22, 22,0]
 expect_upper = [100,8, 8, 8, 8, 10, 10, 10, 10, 14, 14, 14, 14, 19, 19, 19, 19, 22, 22, 22, 22, 25, 25, 25, 25, 25,100]
@@ -437,21 +437,19 @@ def plot(gene,ax2):
 	print("subtime",gene.fit)
 
 
-def plot_3D(Gene,ax2):
+def plot_3D(gene,ax2):
 	routes_temp = deepcopy(gene.subroutes)
 	time_temp = deepcopy(gene.subtime)
 	plot_list_X = []
 	plot_list_Y = []
 	color_set = itertools.cycle(['b','g','r','c','m','k'])
-
 	ax2.scatter(X_coordinate, Y_coordinate,zorder=2)
 	ax2.scatter([X_coordinate[0]], [Y_coordinate[0]],marker='o',zorder=3)
+
 	for i in range(CustNumber+2):
 		ax2.annotate('{}'.format(i),(X_coordinate[i],Y_coordinate[i]))
 		ax2.scatter([X_coordinate[CustNumber+1]], [Y_coordinate[CustNumber+1]],marker='o',zorder=3)
-
 	for subroute,subtime in zip(routes_temp, time_temp):
-		subroute.insert(0,0)
 		subroute.append(CustNumber + 1)
 		Xorder = [X_coordinate[i] for i in subroute]
 		Yorder = [Y_coordinate[i] for i in subroute]
@@ -465,9 +463,6 @@ def plot_3D(Gene,ax2):
 	ax2.set_xlabel('Coordination_X', fontsize=next(fontsizes))
 	ax2.set_ylabel('Coordination_Y', fontsize=next(fontsizes))
 	ax2.set_title('Routes Update', fontsize=next(fontsizes))
-
-
-
 	print("data",gene.data)
 	print("subroutes",gene.subroutes)
 	print("subtime",gene.subtime)
@@ -476,6 +471,7 @@ def plot_3D(Gene,ax2):
 
 if __name__ == '__main__' and not DEBUG :
 	genes = getRandomGenes(Popuation)
+	random.seed(69)
 	best = []
 	fontsizes = itertools.cycle([10,10,14,10,10,14])
 	ax1 = plt.subplot(1,2,1)
@@ -501,7 +497,7 @@ if __name__ == '__main__' and not DEBUG :
 		genes.sort(reverse=True,key=key)
 		best.append(genes[0].fit)
 		ax1.plot(range(i+1),best)
-		plot(genes[0],ax2)
+		plot_3D(genes[0],ax2)
 		plt.pause(0.01)
 		print("Processing Time",time.clock())
 	total_best = genes[0]
@@ -515,14 +511,28 @@ if DEBUG:
 	print("START")
 	fontsizes = itertools.cycle([10,10,14,10,10,14])
 	gene = Gene(data=sampleSolution1)
-	#ax2 = plt.subplot()
-	#plot(gene, ax2)
-	#plt.pause(60)
+	ax2 = plt.subplot()
+	plot_3D(gene, ax2)
+	plt.pause(60)
+	'''
 	for subroute in gene.subroutes:
 		load = 0
 		for order in subroute:
 			load += demand[order]
 		print(load)
+	ax2 = plt.subplot(1,1,1)
+	ax2.set_xlabel('Coordination_X', fontsize=next(fontsizes))
+	ax2.set_ylabel('Coordination_Y', fontsize=next(fontsizes))
+	ax2.set_xlim(-20,130)
+	ax2.set_ylim(-10,130)
+
+	ax2.scatter(X_coordinate, Y_coordinate,zorder=2)
+	ax2.scatter([X_coordinate[26]], [Y_coordinate[26]],marker='o',zorder=3)
+	for i in range(CustNumber+2):
+		ax2.annotate('{}'.format(i),(X_coordinate[i],Y_coordinate[i]))
+		ax2.scatter([X_coordinate[CustNumber+1]], [Y_coordinate[CustNumber+1]],marker='o',zorder=3)
+	plt.show()
+	'''
 
 	print(gene.subroutes)
 	print(gene.subterminal)

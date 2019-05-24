@@ -9,6 +9,7 @@ import math
 import collections
 from VSPA_1 import Gene
 
+
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib import animation 
@@ -18,7 +19,7 @@ import time
 DEBUG = 0
 ## SOME base parameters for this model
 X_coordinate = [120,56, 66, 56, 88, 88, 24, 40, 32, 16, 88, 48, 32, 80, 48, 23, 48, 16, 8, 32, 24, 72, 72, 72, 88, 34]
-Y_coordinate = [60,56, 78, 27, 72, 32, 48, 48, 80, 69, 96, 96, 104, 56, 40, 16, 8, 32, 48, 64, 96, 104, 32, 16, 8, 56]
+Y_coordinate = [60,56, 78, 27, 72, 32, 48, 48, 80, 69, 96, 96, 45, 56, 40, 16, 8, 32, 48, 64, 96, 65, 32, 16, 8, 56]
 demand       = [0,1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1]
 expect_low   = [0,4, 4, 4, 4, 6, 6, 6, 6, 10, 10, 10, 10, 15, 15, 15, 15, 18, 18, 18, 18, 22, 22, 22, 22, 22]
 expect_upper = [100,8, 8, 8, 8, 10, 10, 10, 10, 14, 14, 14, 14, 19, 19, 19, 19, 22, 22, 22, 22, 25, 25, 25, 25, 25]
@@ -163,7 +164,6 @@ class insertion:
 			## 重新更新时间 子路径的时间
 		#返回delay 对应的I
 		return record_delay
-
 
 	def dynamic_new(self):
 		#生成随机动态需求
