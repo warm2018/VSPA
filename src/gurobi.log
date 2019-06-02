@@ -1,0 +1,17 @@
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 12:25:26
+
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+01, 3e+01]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+00, 8e+00]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.01s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.01 seconds
+Optimal objective 1.50000000e+00
