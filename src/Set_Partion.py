@@ -23,6 +23,7 @@ def generate_orders(instance_name='R105'):
 		return
 	return instance
  
+
 def get_seedset(orders):
 	order_temp = copy.deepcopy(orders)
 	set_big = {}
@@ -40,21 +41,14 @@ def get_seedset(orders):
 		set_big[order_i] = set_small
 	return set_big
 
-def plot_orders():
-	X_plot = [instance['{}'.format(i)]['coordinates']['x'] for i in range(1,len(instance)-4+1)]
-	Y_plot = [instance['{}'.format(i)]['coordinates']['y'] for i in range(1,len(instance)-4+1)]
-	plt.scatter(X_plot,Y_plot)
-	plt.show()
-		
-
 def get_number(combination):
-
 	number_list = [instance['{}'.format(i)]['demand'] for i in combination]
 	i = 0;total_number=0
 	while i < len(number_list):
 		total_number += number_list[i]
 		i += 1
 	return total_number
+
 
 def get_cost(subroute):
 	subroute.append(Terminal)
@@ -68,7 +62,7 @@ def get_cost(subroute):
 	start_cost = Start
 	return dist_cost + start_cost
 
-def jude_time(combine):
+def jude_time(combine): ## 判断路径是否符合有效路径约束
 	for com in itertools.combinations(combine, 2):
 		order_i = com[0]
 		order_j = com[1]
@@ -81,32 +75,54 @@ def jude_time(combine):
 		else:
 			return True
 
-def get_comblations(Seed_set,seed_number):
+def get_comblations(key,Seed_set,seed_number):
 	Result_routes = []
 	Result_costs = []
 	remain_capacity = Capacity - seed_number
-	for i in range(1,min(len(Seed_set),remain_capacity) + 1):
-		for combine in itertools.combinations(Seed_set, i):
-			if i >=2:
-				time_windows = jude_time(combine)
-			else:
-				time_windows = True
-			if get_number(combine) <= Capacity and time_windows: ##满足容量约束
-				best_cost = 10000
-				for route_sequence in itertools.permutations(combine, len(combine)):
-					subroute = list(route_sequence) ##将元组的排列改为列表的排列
-					current_cost = get_cost(subroute)
-					if current_cost <= best_cost:
-						best_cost = current_cost
-						best_subroute = subroute
-				assert(best_cost <= 10000)		
-				Result_routes.append(best_subroute)
-				Result_costs.append(best_cost)
+	print(Seed_set)
+	if Seed_set != []:
+		for i in range(1,min(len(Seed_set),remain_capacity) + 1):
+			for combine in itertools.combinations(Seed_set, i):
+				if i >=2:
+					time_windows = jude_time(combine)
+				else:
+					time_windows = True
+				if get_number(combine) <= remain_capacity and time_windows: ##满足容量约束
+					combine_after = list(combine)
+					combine_after.insert(0,key)
+					assert(get_number(combine_after) <= Capacity)
+					best_cost = 10000
+					for route_sequence in itertools.permutations(combine_after, len(combine_after)):
+						subroute = list(route_sequence) ##将元组的排列改为列表的排列
+						current_cost = get_cost(subroute)
+						if current_cost <= best_cost:
+							best_cost = current_cost
+							best_subroute = subroute
+					assert(best_cost <= 10000)		
+					Result_routes.append(best_subroute)
+					Result_costs.append(best_cost)
+	else:
+		subroute = [key]
+		cost = get_cost(subroute)
+		Result_routes.append(subroute) 
+		Result_costs.append(cost)
+
 	return Result_routes, Result_costs
 
 
-def solve_problem(total_routes,total_cost):
+def get_total(set_big):
+	total_routes = []
+	total_cost = []
+	for key,values in set_big.items():
+		seed_number = instance['{}'.format(key)]['demand']
+		Seed_set = values
+		Result_routes, Result_costs = get_comblations(key,Seed_set, seed_number)
+		total_routes = total_routes + Result_routes
+		total_cost = total_cost + Result_costs
+	return total_routes, total_cost
 
+
+def solve_problem(total_routes,total_cost):
 	m = Model('airport')
 	orders_number = orders_number = len(instance) - 4
 	wideth = [i for i in range(1,orders_number + 1)]
@@ -117,7 +133,8 @@ def solve_problem(total_routes,total_cost):
 	Binary_value = []
 	for i in wideth:
 		for j in range(len(total_routes)):
-			Binary_list.append((i,j))			
+			Binary_list.append((i,j))
+
 	jude = m.addVars(Binary_list,vtype=GRB.BINARY,name="jude")
 	for i in wideth:
 		for j,value in enumerate(total_routes):
@@ -128,28 +145,36 @@ def solve_problem(total_routes,total_cost):
 	choose = m.addVars(length,vtype=GRB.BINARY,name="choose")
 	for i in wideth:
 		m.addConstr(sum(jude[i,r] * choose[r] for r in range(len(length))) == 1,name='{}'.format(i))
-
 	m.setObjective(quicksum(total_cost[i] * choose[i] for i in length), GRB.MINIMIZE)
 	m.optimize()
 
+	result = []
 
+	if m.status == GRB.Status.OPTIMAL:
+		solution = m.getAttr('x',choose)
+		for i in length:
+			if solution[i] == 1:
+				result.append(total_routes[i])
+	return result
 
-def get_total(set_big):
-	total_routes = []
-	total_cost = []
-	for key,values in set_big.items():
-		print(key)
-		print(len(total_routes))
-		print(len(total_cost))	
-		if values != []:
-			seed_number = instance['{}'.format(key)]['demand']
-			Seed_set = values
-			Result_routes, Result_costs = get_comblations(Seed_set, seed_number)
-			total_routes = total_routes + Result_routes
-			total_cost = total_cost + Result_costs
-	return total_routes, total_cost
+def plot_result(result):
+	X_plot = [instance['{}'.format(i)]['coordinates']['x'] for i in range(1,len(instance)-4+1)]
+	Y_plot = [instance['{}'.format(i)]['coordinates']['y'] for i in range(1,len(instance)-4+1)]
+	plt.scatter(X_plot,Y_plot)
+	for subroute in result:
+		X_plot = [];Y_plot =[]
+		for i in subroute:
+			if i!=0:
+				X_plot.append(instance['{}'.format(i)]['coordinates']['x'])
+				Y_plot.append(instance['{}'.format(i)]['coordinates']['y'])
+			else:
+				X_plot.append(instance['deport']['coordinates']['x'])
+				Y_plot.append(instance['deport']['coordinates']['y'])
+		assert(len(X_plot) == len(Y_plot))
+		print(X_plot,Y_plot)
+		plt.plot(X_plot,Y_plot)
+	plt.show()
 
-	
 
 if __name__ == '__main__':
 	generate_orders()
@@ -160,8 +185,9 @@ if __name__ == '__main__':
 	set_big = get_seedset(orders)
 	total_routes,total_cost =get_total(set_big)
 	assert(len(total_routes) == len(total_cost))
-	solve_problem(total_routes, total_cost)
-	print(total_routes)
+	result = solve_problem(total_routes, total_cost)
+	plot_result(result)
+
 
 
 

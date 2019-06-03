@@ -1,9 +1,11 @@
-t = [[1,3,4],[1,3,4],[1,3,4]]
-s = [1,2]
-re = []
-for i in s:
-	for j in t:
-		re.append(0 if i in j else 1)
-		
-print(re)
+import itertools
 
+Seed_set = [1,2]
+
+for i in range(1,1):
+	print("lll",i)
+	for combine in itertools.combinations(Seed_set, i):
+		print("lll",combine)
+		list1 = list(combine)
+		list1.insert(0,7)
+		print(list1)
