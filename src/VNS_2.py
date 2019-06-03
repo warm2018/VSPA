@@ -15,7 +15,6 @@ import matplotlib.pyplot as plt
 from matplotlib import animation 
 import time
 
-
 DEBUG = 0
 ## SOME base parameters for this model
 X_coordinate = [120,56, 66, 56, 88, 88, 24, 40, 32, 16, 88, 48, 32, 80, 48, 23, 48, 16, 8, 32, 24, 72, 72, 72, 88, 34]
@@ -160,7 +159,6 @@ class insertion:
 					load += self.demand[0][i]
 			self.sub_remain_capacity.append(VehicleCpacity - (self.subload[sub_count] - load))
 			sub_count += 1
-
 			## 重新更新时间 子路径的时间
 		#返回delay 对应的I
 		return record_delay
@@ -352,7 +350,6 @@ class insertion:
 					break  
 			if not success:
 				print("订单%d未能插入成功，因为原始路径的容量不允许"%new_id[i])   
-
 			## new_label中找出还未被替换的车辆，重新未其分配车辆路线。
 			##加入新的路线至subroutes 新路线的条件是满载率超过50%， 如果不超过50%，将剩余的订单随机剔除
 			##得到还未插入到旧路线的id与label(判断其是延误订单还是新订单)
@@ -383,6 +380,7 @@ class insertion:
 			if sub_newroute !=[]:
 				self.remain_subroutes.append(sub_newroute)
 
+
 			 #检查前面的步骤已对new_label全部进行操作
 
 
@@ -404,6 +402,8 @@ class insertion:
 		## 因此对于VNS下属的functions,除了全局变量以外，
 		## 其余一律不得使用insertion类的属性值
 
+		读取改进之后的新路径，在考虑
+		画图
 
 
 	def get_init_fit(self):
@@ -596,5 +596,5 @@ if __name__ == '__main__':
 		insertion1 = insertion(ga_solution)
 		insertion1.current = interval
 		insertion1.update()
-		interval += 1
+		interval += 6
 		

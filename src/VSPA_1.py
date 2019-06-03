@@ -145,8 +145,7 @@ class Gene:
 			for j in i:
 				self.data[1][datacount] = j
 				datacount += 1
-				
-
+		
 	def getFit(self):
 		calculateDist = lambda x1, y1, x2, y2: math.sqrt(((x1-x2) ** 2) + ((y1 - y2) ** 2 ))
 		fit = 0; dist_cost = 0; 

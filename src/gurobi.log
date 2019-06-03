@@ -15,3 +15,114 @@ Presolve: All rows and columns removed
 
 Barrier solved model in 0 iterations and 0.01 seconds
 Optimal objective 1.50000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:31:09
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:31:37
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:31:57
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:43:09
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:43:30
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:44:01
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 19:46:08
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:46:39
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:54:10
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:54:32
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:56:18
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:56:36
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 20:57:03
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:03:03
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:04:16
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:05:53
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:09:29
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:24:23
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 21:25:00
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:05:04
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:12:41
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:14:03
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:15:36
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:20:37
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:41:03
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:42:56
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:45:04
+
+
+Gurobi 8.1.0 (win64, Python) logging started 06/02/19 22:49:21
+
+Optimize a model with 50 rows, 1358028 columns and 96126 nonzeros
+Variable types: 0 continuous, 1358028 integer (1358028 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 08:37:44
+
+Optimize a model with 50 rows, 1358028 columns and 96126 nonzeros
+Variable types: 0 continuous, 1358028 integer (1358028 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 09:28:46
+
+Optimize a model with 50 rows, 1358028 columns and 96126 nonzeros
+Variable types: 0 continuous, 1358028 integer (1358028 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]

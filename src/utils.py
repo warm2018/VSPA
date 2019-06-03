@@ -92,7 +92,7 @@ def text2json(customize=False):
                             'x': float(values[1]),
                             'y': float(values[2]),
                         },
-                        'demand': float(values[3]),
+                        'demand': int(values[3]),
                         'Earliest': float(values[4]),
                         'Latest': float(values[5]),
                         'service_time': float(values[6]),
@@ -106,12 +106,12 @@ def text2json(customize=False):
                             'x': float(values[1]),
                             'y': float(values[2]),
                         },
-                        'demand': float(values[3]),
+                        'demand': int(values[3]),
                         'Earliest': float(values[4]),
                         'Latest': float(values[5]),
                         'service_time': float(values[6]),
                     }
-        customers = ['deport'] + ['{}'.format(x) for x in range(1, 101)]
+        customers = ['deport'] + ['{}'.format(x) for x in range(1, 51)]
         json_data['distance_matrix'] = [[calculate_distance(json_data[customer1], json_data[customer2]) \
             for customer1 in customers] for customer2 in customers]
         json_file_name = '{}.json'.format(json_data['instance_name'])
