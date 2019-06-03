@@ -72,8 +72,19 @@ def jude_time(combine): ## 判断路径是否符合有效路径约束
 			instance['{}'.format(order_j)]['Latest'] 
 		if jude_overlap:
 			return False
-		else:
-			return True
+	return True
+
+def jude_detour(sequence):
+	for i,order in enumerate(sequence):
+		if i == 0:
+			last_order = order
+			continue
+		if instance['distance_matrix'][order][0] > instance['distance_matrix'][last_order][0]:
+			return False
+		last_order = order
+	return True
+
+
 
 def get_comblations(key,Seed_set,seed_number):
 	Result_routes = []
@@ -94,19 +105,19 @@ def get_comblations(key,Seed_set,seed_number):
 					best_cost = 10000
 					for route_sequence in itertools.permutations(combine_after, len(combine_after)):
 						subroute = list(route_sequence) ##将元组的排列改为列表的排列
-						current_cost = get_cost(subroute)
-						if current_cost <= best_cost:
-							best_cost = current_cost
-							best_subroute = subroute
-					assert(best_cost <= 10000)		
-					Result_routes.append(best_subroute)
-					Result_costs.append(best_cost)
+						if jude_detour(subroute):
+							current_cost = get_cost(subroute)
+							if current_cost <= best_cost:
+								best_cost = current_cost
+								best_subroute = subroute
+					if best_cost < 9999:	
+						Result_routes.append(best_subroute)
+						Result_costs.append(best_cost)
 	else:
 		subroute = [key]
 		cost = get_cost(subroute)
 		Result_routes.append(subroute) 
 		Result_costs.append(cost)
-
 	return Result_routes, Result_costs
 
 
@@ -149,7 +160,6 @@ def solve_problem(total_routes,total_cost):
 	m.optimize()
 
 	result = []
-
 	if m.status == GRB.Status.OPTIMAL:
 		solution = m.getAttr('x',choose)
 		for i in length:
@@ -171,9 +181,31 @@ def plot_result(result):
 				X_plot.append(instance['deport']['coordinates']['x'])
 				Y_plot.append(instance['deport']['coordinates']['y'])
 		assert(len(X_plot) == len(Y_plot))
-		print(X_plot,Y_plot)
 		plt.plot(X_plot,Y_plot)
 	plt.show()
+
+def solve_time(routes_result):
+	departure = []
+	for subroute in routes_result:
+		time = solve_lp(subroute)
+		departure.append(time)
+	return departure
+
+def solve_lp(subroute):
+	m = Model("LP")
+	expect_low = [instance['{}'.format(i)]['Earliest'] for i in subroute[:-1]]
+	expect_upper =[instance['{}'.format(i)]['Latest'] for i in subroute[:-1]]
+	x = m.addVar(vtype=GRB.CONTINUOUS,name="x")
+	m.setObjective(quicksum((x - (a_l+ b_u)/2)*(x - (a_l+ b_u)/2) \
+	for a_l, b_u in zip(expect_low,expect_upper)), GRB.MINIMIZE)
+	m.addConstrs((x <= b_u for b_u in expect_upper), "c0")
+	m.addConstrs((x >= a_l for a_l in expect_low), "c1")
+	m.optimize()
+	if m.status == GRB.Status.OPTIMAL:
+		solution = m.getVarByName('x')
+		result = solution.x
+	return result
+
 
 
 if __name__ == '__main__':
@@ -185,8 +217,11 @@ if __name__ == '__main__':
 	set_big = get_seedset(orders)
 	total_routes,total_cost =get_total(set_big)
 	assert(len(total_routes) == len(total_cost))
-	result = solve_problem(total_routes, total_cost)
-	plot_result(result)
+	routes_result = solve_problem(total_routes, total_cost)
+	time_result = solve_time(routes_result)
+
+	plot_result(routes_result)
+	print(time_result)
 
 
 

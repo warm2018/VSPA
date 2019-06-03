@@ -678,3 +678,1383 @@ Solution count 2: 6716.56 6854.24
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 6.716564820332e+03, best bound 6.716564820332e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 21:30:36
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.31s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.85 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:08:35
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.30s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.85 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:41:08
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.32s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.87 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:41:53
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.31s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.83 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:48:03
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.39s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.93 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:54:48
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.31s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.87 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:56:19
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.32s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.86 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Model is infeasible or unbounded
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 22:59:00
+
+Optimize a model with 50 rows, 404073 columns and 31771 nonzeros
+Variable types: 0 continuous, 404073 integer (404073 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 396150 columns
+Presolve time: 0.35s
+Presolved: 50 rows, 7923 columns, 31771 nonzeros
+Variable types: 0 continuous, 7923 integer (7923 binary)
+
+Root relaxation: objective 6.799986e+03, 139 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6799.98573    0   28          - 6799.98573      -     -    0s
+H    0     0                    8394.3633350 6799.98573  19.0%     -    0s
+H    0     0                    7481.9812753 6799.98573  9.12%     -    0s
+H    0     0                    6913.3058205 6799.98573  1.64%     -    0s
+     0     0 6876.37444    0   38 6913.30582 6876.37444  0.53%     -    0s
+     0     0     cutoff    0      6913.30582 6913.30582  0.00%     -    0s
+
+Explored 1 nodes (227 simplex iterations) in 0.90 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 6913.31 7481.98 8394.36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.913305820477e+03, best bound 6.913305820477e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Model is infeasible or unbounded
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 23:22:19
+
+Optimize a model with 50 rows, 289119 columns and 21239 nonzeros
+Variable types: 0 continuous, 289119 integer (289119 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 11150.650612
+Presolve removed 0 rows and 283450 columns
+Presolve time: 0.23s
+Presolved: 50 rows, 5669 columns, 21239 nonzeros
+Variable types: 0 continuous, 5669 integer (5669 binary)
+
+Root relaxation: objective 6.973243e+03, 156 iterations, 0.01 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6973.24344    0   31 11150.6506 6973.24344  37.5%     -    0s
+H    0     0                    7479.7024312 6973.24344  6.77%     -    0s
+H    0     0                    7091.1792356 6973.24344  1.66%     -    0s
+     0     0 7038.70110    0   32 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7038.70110    0   26 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7070.24610    0   16 7091.17924 7070.24610  0.30%     -    0s
+     0     0 7077.09540    0   16 7091.17924 7077.09540  0.20%     -    0s
+
+Cutting planes:
+  Clique: 12
+  Mod-K: 4
+
+Explored 1 nodes (317 simplex iterations) in 0.68 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 7091.18 7479.7 11150.7 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.091179235557e+03, best bound 7.091179235557e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.40666667e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+02, 8e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.90000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.58000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e+01, 7e+01]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.22750000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [7e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.14750000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.38000000e+02
+Optimize a model with 10 rows, 1 columns and 10 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [1e+01, 1e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 10 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.11200000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.87000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [9e+02, 9e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.69000000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 2e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64500000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.12000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [6e+02, 6e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [8e+01, 1e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 9.60000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 7e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.12666667e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [5e+02, 5e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.05000000e+01
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 23:24:44
+
+Optimize a model with 50 rows, 289119 columns and 21239 nonzeros
+Variable types: 0 continuous, 289119 integer (289119 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 11150.650612
+Presolve removed 0 rows and 283450 columns
+Presolve time: 0.23s
+Presolved: 50 rows, 5669 columns, 21239 nonzeros
+Variable types: 0 continuous, 5669 integer (5669 binary)
+
+Root relaxation: objective 6.973243e+03, 156 iterations, 0.01 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6973.24344    0   31 11150.6506 6973.24344  37.5%     -    0s
+H    0     0                    7479.7024312 6973.24344  6.77%     -    0s
+H    0     0                    7091.1792356 6973.24344  1.66%     -    0s
+     0     0 7038.70110    0   32 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7038.70110    0   26 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7070.24610    0   16 7091.17924 7070.24610  0.30%     -    0s
+     0     0 7077.09540    0   16 7091.17924 7077.09540  0.20%     -    0s
+
+Cutting planes:
+  Clique: 12
+  Mod-K: 4
+
+Explored 1 nodes (317 simplex iterations) in 0.66 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 7091.18 7479.7 11150.7 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.091179235557e+03, best bound 7.091179235557e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.40666667e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+02, 8e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.90000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.58000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e+01, 7e+01]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.22750000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [7e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.14750000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.38000000e+02
+Optimize a model with 10 rows, 1 columns and 10 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [1e+01, 1e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 10 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.11200000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.87000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [9e+02, 9e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.69000000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 2e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64500000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.12000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [6e+02, 6e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [8e+01, 1e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 9.60000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 7e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.12666667e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [5e+02, 5e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.05000000e+01
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 23:25:01
+
+Optimize a model with 50 rows, 289119 columns and 21239 nonzeros
+Variable types: 0 continuous, 289119 integer (289119 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 11150.650612
+Presolve removed 0 rows and 283450 columns
+Presolve time: 0.24s
+Presolved: 50 rows, 5669 columns, 21239 nonzeros
+Variable types: 0 continuous, 5669 integer (5669 binary)
+
+Root relaxation: objective 6.973243e+03, 156 iterations, 0.01 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6973.24344    0   31 11150.6506 6973.24344  37.5%     -    0s
+H    0     0                    7479.7024312 6973.24344  6.77%     -    0s
+H    0     0                    7091.1792356 6973.24344  1.66%     -    0s
+     0     0 7038.70110    0   32 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7038.70110    0   26 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7070.24610    0   16 7091.17924 7070.24610  0.30%     -    0s
+     0     0 7077.09540    0   16 7091.17924 7077.09540  0.20%     -    0s
+
+Cutting planes:
+  Clique: 12
+  Mod-K: 4
+
+Explored 1 nodes (317 simplex iterations) in 0.68 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 7091.18 7479.7 11150.7 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.091179235557e+03, best bound 7.091179235557e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.40666667e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+02, 8e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.90000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.58000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e+01, 7e+01]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.22750000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [7e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.14750000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.38000000e+02
+Optimize a model with 10 rows, 1 columns and 10 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [1e+01, 1e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 10 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.11200000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.87000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [9e+02, 9e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.69000000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 2e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64500000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.12000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [6e+02, 6e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [8e+01, 1e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 9.60000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 7e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.12666667e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [5e+02, 5e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.05000000e+01
+
+Gurobi 8.1.0 (win64, Python) logging started 06/03/19 23:27:41
+
+Optimize a model with 50 rows, 289119 columns and 21239 nonzeros
+Variable types: 0 continuous, 289119 integer (289119 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 2e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 11150.650612
+Presolve removed 0 rows and 283450 columns
+Presolve time: 0.24s
+Presolved: 50 rows, 5669 columns, 21239 nonzeros
+Variable types: 0 continuous, 5669 integer (5669 binary)
+
+Root relaxation: objective 6.973243e+03, 156 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6973.24344    0   31 11150.6506 6973.24344  37.5%     -    0s
+H    0     0                    7479.7024312 6973.24344  6.77%     -    0s
+H    0     0                    7091.1792356 6973.24344  1.66%     -    0s
+     0     0 7038.70110    0   32 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7038.70110    0   26 7091.17924 7038.70110  0.74%     -    0s
+     0     0 7070.24610    0   16 7091.17924 7070.24610  0.30%     -    0s
+     0     0 7077.09540    0   16 7091.17924 7077.09540  0.20%     -    0s
+
+Cutting planes:
+  Clique: 12
+  Mod-K: 4
+
+Explored 1 nodes (317 simplex iterations) in 0.72 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 7091.18 7479.7 11150.7 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.091179235557e+03, best bound 7.091179235557e+03, gap 0.0000%
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.20000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.40666667e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+02, 8e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.90000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.58000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e+01, 7e+01]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.22750000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [7e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64000000e+02
+Optimize a model with 8 rows, 1 columns and 8 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+02, 7e+02]
+  QObjective range [8e+00, 8e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 8 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.14750000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+01, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.38000000e+02
+Optimize a model with 10 rows, 1 columns and 10 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  QObjective range [1e+01, 1e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 10 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 2.11200000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 8e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.87000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [9e+02, 9e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 2e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.69000000e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e+02, 2e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.64500000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+02, 4e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 9e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 3.12000000e+02
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [6e+02, 6e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [8e+01, 1e+02]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 9.60000000e+01
+Optimize a model with 6 rows, 1 columns and 6 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [3e+02, 3e+02]
+  QObjective range [6e+00, 6e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 7e+01]
+Presolve removed 6 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.12666667e+02
+Optimize a model with 4 rows, 1 columns and 4 nonzeros
+Model has 1 quadratic objective term
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [5e+02, 5e+02]
+  QObjective range [4e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+02, 1e+02]
+Presolve removed 4 rows and 1 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 4.05000000e+01
