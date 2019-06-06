@@ -8,10 +8,14 @@ import matplotlib.pyplot as plt
 import copy
 from gurobipy import *
 
-Capacity = 7
-Terminal = 0
-Unit_cost = 5
+Capacity = 7 ## 送机车辆容量
+Terminal = 0 ## 机场终点编号
+Unit_cost = 5 ## 单位距离行驶费用
 Start = 200
+Vehicle_speed = 40
+MAX_TW = 240
+Prob_delay = 0.1
+
 
 def generate_orders(instance_name='R105'):
 	json_data_dir = os.path.join('..', 'data', 'json')
@@ -62,6 +66,7 @@ def get_cost(subroute):
 	start_cost = Start
 	return dist_cost + start_cost
 
+
 def jude_time(combine): ## 判断路径是否符合有效路径约束
 	for com in itertools.combinations(combine, 2):
 		order_i = com[0]
@@ -74,6 +79,7 @@ def jude_time(combine): ## 判断路径是否符合有效路径约束
 			return False
 	return True
 
+
 def jude_detour(sequence):
 	for i,order in enumerate(sequence):
 		if i == 0:
@@ -83,7 +89,6 @@ def jude_detour(sequence):
 			return False
 		last_order = order
 	return True
-
 
 
 def get_comblations(key,Seed_set,seed_number):
@@ -113,6 +118,7 @@ def get_comblations(key,Seed_set,seed_number):
 					if best_cost < 9999:	
 						Result_routes.append(best_subroute)
 						Result_costs.append(best_cost)
+
 	else:
 		subroute = [key]
 		cost = get_cost(subroute)
@@ -133,9 +139,10 @@ def get_total(set_big):
 	return total_routes, total_cost
 
 
-def solve_problem(total_routes,total_cost):
+def solve_problem(total_routes,total_cost,set_big):
 	m = Model('airport')
-	orders_number = orders_number = len(instance) - 4
+
+	orders_number = len(set_big)
 	wideth = [i for i in range(1,orders_number + 1)]
 	length = [i for i in range(len(total_routes))]
 
@@ -158,7 +165,6 @@ def solve_problem(total_routes,total_cost):
 		m.addConstr(sum(jude[i,r] * choose[r] for r in range(len(length))) == 1,name='{}'.format(i))
 	m.setObjective(quicksum(total_cost[i] * choose[i] for i in length), GRB.MINIMIZE)
 	m.optimize()
-
 	result = []
 	if m.status == GRB.Status.OPTIMAL:
 		solution = m.getAttr('x',choose)
@@ -170,7 +176,8 @@ def solve_problem(total_routes,total_cost):
 def plot_result(result):
 	X_plot = [instance['{}'.format(i)]['coordinates']['x'] for i in range(1,len(instance)-4+1)]
 	Y_plot = [instance['{}'.format(i)]['coordinates']['y'] for i in range(1,len(instance)-4+1)]
-	plt.scatter(X_plot,Y_plot)
+	plt.scatter(X_plot,Y_plot,zorder=2)
+	plt.scatter(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y'],s=40,color='r',zorder=2)	
 	for subroute in result:
 		X_plot = [];Y_plot =[]
 		for i in subroute:
@@ -181,7 +188,7 @@ def plot_result(result):
 				X_plot.append(instance['deport']['coordinates']['x'])
 				Y_plot.append(instance['deport']['coordinates']['y'])
 		assert(len(X_plot) == len(Y_plot))
-		plt.plot(X_plot,Y_plot)
+		plt.plot(X_plot,Y_plot,zorder=1)
 	plt.show()
 
 def solve_time(routes_result):
@@ -190,6 +197,7 @@ def solve_time(routes_result):
 		time = solve_lp(subroute)
 		departure.append(time)
 	return departure
+
 
 def solve_lp(subroute):
 	m = Model("LP")
@@ -207,8 +215,24 @@ def solve_lp(subroute):
 	return result
 
 
+def get_ordertime(routes_result, time_result):
+	time_order = []
+	for subroute,subterminaltime in zip(routes_result,time_result):
+		subroute_time = [subterminaltime]
+		current_time = subterminaltime
+		for i in range(len(subroute)-1,-1,-1):
+			distance = instance['distance_matrix'][subroute[i]][subroute[i-1]]
+			time = round((distance / Vehicle_speed) * 30,1)
+			current_time = current_time - time
+			subroute_time.append(round(current_time,2))
+			if i == 1:
+				break
+		subroute_time.reverse()
+		time_order.append(subroute_time)
+	assert(len(time_order) == len(time_result))
+	return time_order
 
-if __name__ == '__main__':
+def get_static():
 	generate_orders()
 	orders_number = len(instance) - 4
 	orders = list(range(1,orders_number + 1))
@@ -217,12 +241,15 @@ if __name__ == '__main__':
 	set_big = get_seedset(orders)
 	total_routes,total_cost =get_total(set_big)
 	assert(len(total_routes) == len(total_cost))
-	routes_result = solve_problem(total_routes, total_cost)
+	routes_result = solve_problem(total_routes, total_cost,set_big)
 	time_result = solve_time(routes_result)
-
+	order_time = get_ordertime(routes_result, time_result)
 	plot_result(routes_result)
-	print(time_result)
+	return routes_result, order_time
 
+
+if __name__ == '__main__':
+	get_static()
 
 
 

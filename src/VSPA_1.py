@@ -491,7 +491,6 @@ if __name__ == '__main__' and not DEBUG :
 		genes = mergeGenes(genes, crossedGenes)
 		genes = vary(genes)
 		print("GENERATION %d"%i)
-
 		key = lambda gene: gene.fit
 		genes.sort(reverse=True,key=key)
 		best.append(genes[0].fit)

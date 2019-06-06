@@ -163,6 +163,7 @@ class insertion:
 		#返回delay 对应的I
 		return record_delay
 
+
 	def dynamic_new(self):
 		#生成随机动态需求
 		start = len(self.demand[0])-1
@@ -400,11 +401,6 @@ class insertion:
 		##对于VNS算法，它的输入是insetion类的属性值，但在VNS算法中不能
 		##insertion类的属性值改变，只能在最后算出结果来之后才将属性值更新。
 		## 因此对于VNS下属的functions,除了全局变量以外，
-		## 其余一律不得使用insertion类的属性值
-
-		读取改进之后的新路径，在考虑
-		画图
-
 
 	def get_init_fit(self):
 

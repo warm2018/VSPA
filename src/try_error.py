@@ -1,6 +1,6 @@
 import itertools
 
-Seed_set = [1,2,5]
-print(Seed_set[:-1])
+Seed_set = {'1':2 ,'2':3}
+L = list(Seed_set.keys())
 
-
+print(L)

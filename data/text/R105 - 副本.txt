@@ -8,7 +8,7 @@ CUSTOMER
 CUST NO.   XCOORD.   YCOORD.   DEMAND    READY TIME   DUE DATE   SERVICE TIME
  
     0      80         40          0          0        230          0   
-    1      41         49          1          6        181         10   
+    1      41         49          1        151        181         10   
     2      35         17          2         40         70         10   
     3      55         45          3        106        136         10   
     4      55         20          1        139        169         10   
