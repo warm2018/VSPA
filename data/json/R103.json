@@ -499,7 +499,7 @@
         "demand": 3,
         "service_time": 10.0
     },
-    "Capacity": 7.0,
+    "Capacity": 200.0,
     "deport": {
         "Earliest": 0.0,
         "Latest": 230.0,
@@ -3215,5 +3215,5 @@
             0.0
         ]
     ],
-    "instance_name": "R105"
+    "instance_name": "R103"
 }

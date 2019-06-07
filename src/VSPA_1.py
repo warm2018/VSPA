@@ -417,7 +417,6 @@ def plot(gene,ax2):
 
 		ax2.scatter3D(Xorder,Yorder,Zorder,alpha=0.3)     #生成散点.利用c控制颜色序列,s控制大小
 		ax2.plot3D(Xorder,Yorder,Zorder,c=next(color_set),zorder=1)
-
 	ax2.set_xlabel('Coordination_X', fontsize=next(fontsizes))
 	ax2.set_ylabel('Coordination_Y', fontsize=next(fontsizes))
 	ax2.set_title('Routes Update', fontsize=next(fontsizes))
@@ -444,7 +443,6 @@ def plot_3D(gene,ax2):
 	color_set = itertools.cycle(['b','g','r','c','m','k'])
 	ax2.scatter(X_coordinate, Y_coordinate,zorder=2)
 	ax2.scatter([X_coordinate[0]], [Y_coordinate[0]],marker='o',zorder=3)
-
 	for i in range(CustNumber+2):
 		ax2.annotate('{}'.format(i),(X_coordinate[i],Y_coordinate[i]))
 		ax2.scatter([X_coordinate[CustNumber+1]], [Y_coordinate[CustNumber+1]],marker='o',zorder=3)
@@ -454,11 +452,9 @@ def plot_3D(gene,ax2):
 		Yorder = [Y_coordinate[i] for i in subroute]
 		plot_list_X.append(Xorder)
 		plot_list_Y.append(Yorder)
-
 	for Xorder,Yorder in zip(plot_list_X,plot_list_Y):		
 		ax2.plot(Xorder,Yorder,c=next(color_set),zorder=1)
 	## 连线
-
 	ax2.set_xlabel('Coordination_X', fontsize=next(fontsizes))
 	ax2.set_ylabel('Coordination_Y', fontsize=next(fontsizes))
 	ax2.set_title('Routes Update', fontsize=next(fontsizes))
@@ -511,7 +507,7 @@ if DEBUG:
 	gene = Gene(data=sampleSolution1)
 	ax2 = plt.subplot()
 	plot_3D(gene, ax2)
-	plt.pause(60)
+	
 	'''
 	for subroute in gene.subroutes:
 		load = 0

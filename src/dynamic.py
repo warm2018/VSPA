@@ -1,12 +1,13 @@
 from Set_Partion import *
-from Static import order_time,routes_result
+from Static import order_time,routes_result,departure
 import copy
 import random
+import time
+
 STATIC = 0
 instance = generate_orders()
 if STATIC:
 	routes_result, order_time  = get_static()
-
 record_delay = []
 Time_penalty = 1
 
@@ -47,6 +48,7 @@ def visited(current_time):
 				break ##跳出第二个循环
 	## 此函数将已访问的订单与还未访问的订单区别开来，方便下一步插入优化操作
 
+
 def get_initload():
 	## 得到原始路线各条子路径的载客量
 	global subload
@@ -59,6 +61,7 @@ def get_initload():
 			else:
 				load += 0
 		subload.append(load)
+
 
 
 def dynamic_delay():
@@ -77,6 +80,7 @@ def dynamic_delay():
 					instance['{}'.format(i)]['Latest'] - delaytime_upper,instance['{}'.format(i)]['Earliest'],instance['{}'.format(i)]['Latest']),"变化前所在路径:",subroute)
 					current_delay.append(i) ##还需记录延误的订单
 	return current_delay
+
 
 def merge_orders(remain_subroutes,visited_order,record_delay):
 	force_order = [[],[]]
@@ -101,8 +105,6 @@ def merge_orders(remain_subroutes,visited_order,record_delay):
 	merge_order = force_order[0] + remain_order
 	set_big = dynamic_seedset(remain_order,force_order,force_memeber)
 	return set_big,force_order,force_memeber
-
-
 
 def judge_overlap(order_i,order_j):
 	judge = \
@@ -261,7 +263,7 @@ def get_comblations(key,Seed_set,seed_number,force=False):
 		Result_routes.append(subroute) 
 		Result_costs.append(cost)
 	return Result_routes, Result_costs
-
+	
 
 def get_total(set_big,force_order,force_memeber):
 	total_routes = []
@@ -294,7 +296,6 @@ def solve_problem(total_routes,total_cost,set_big):
 	for i in wideth:
 		for j in range(len(total_routes)):
 			Binary_list.append((i,j))
-
 	jude = m.addVars(Binary_list,vtype=GRB.BINARY,name="jude")
 	for i in wideth:
 		for j,value in enumerate(total_routes):
@@ -315,6 +316,7 @@ def solve_problem(total_routes,total_cost,set_big):
 				result.append(total_routes[i])
 	return result
 
+
 def solve_time(routes_result,force_order):
 	departure = []
 	for subroute in routes_result:
@@ -324,6 +326,8 @@ def solve_time(routes_result,force_order):
 		else:
 			departure.append(force_order[1][force_order[0].index(subroute[0])])
 	return departure
+
+
 
 def solve_lp(subroute):
 	m = Model("LP")
@@ -339,6 +343,7 @@ def solve_lp(subroute):
 		solution = m.getVarByName('x')
 		result = solution.x
 	return result
+
 
 def get_ordertime(routes_result,time_result,force_order):
 	time_order = []
@@ -358,15 +363,36 @@ def get_ordertime(routes_result,time_result,force_order):
 	return time_order
 
 
-def plot_result(result,current,departure,force_order,visited_order):
+def plot_result(result,current,force_order,visited_order,record_delay,departure=None):
 	plt.style.use('fivethirtyeight')
 	X_plot = [instance['{}'.format(i)]['coordinates']['x'] for i in range(1,len(instance)-4+1)]
 	Y_plot = [instance['{}'.format(i)]['coordinates']['y'] for i in range(1,len(instance)-4+1)]
 	plt.scatter(X_plot,Y_plot,zorder=2)
 	plt.scatter(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y'],s=60,color='r',zorder=2)
 	plt.annotate('Airport',(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y']),size=12)
+	if record_delay != []:
+		for delay in record_delay:
+			plt.scatter(instance['{}'.format(delay)]['coordinates']['x'],instance['{}'.format(delay)]['coordinates']['y'],color='green',zorder=3)
+			
 	for i in range(1,len(instance)-4+1):
 		plt.annotate('{}'.format(i),(instance['{}'.format(i)]['coordinates']['x'],instance['{}'.format(i)]['coordinates']['y']),size=8)
+	for i,subroute in enumerate(visited_order):
+		if subroute != []:
+			if force_order[0][i] != -1:
+				subroute.append(force_order[0][i])
+			else:
+				subroute.append(Terminal)
+			X_plot = [];Y_plot =[]
+			for i in subroute:
+				if i!=0:
+					X_plot.append(instance['{}'.format(i)]['coordinates']['x'])
+					Y_plot.append(instance['{}'.format(i)]['coordinates']['y'])			
+				else:
+					X_plot.append(instance['deport']['coordinates']['x'])
+					Y_plot.append(instance['deport']['coordinates']['y'])					
+			assert(len(X_plot) == len(Y_plot))	
+			plt.plot(X_plot,Y_plot,zorder=1)
+	plt.pause(1)
 
 	for i,subroute in enumerate(result):
 		X_plot = [];Y_plot =[]
@@ -381,48 +407,41 @@ def plot_result(result,current,departure,force_order,visited_order):
 		if departure[i] <= current:
 			plt.plot(X_plot,Y_plot,zorder=1)
 		else:
-			plt.plot(X_plot,Y_plot,zorder=1,color='lightgray')
-	assert(len(force_order[0]) == len(visited_order))
-	print(force_order,visited_order)
-	for i,subroute in enumerate(visited_order):
-		if subroute != []:
-			if force_order[0][i] != -1:
-				subroute.append(force_order[0][i])
+			if current >= 10:
+				plt.plot(X_plot,Y_plot,zorder=1,color='lightslategray')
 			else:
-				subroute.append(Terminal)
-			X_plot = [];Y_plot =[]
-			for i in subroute:
-				if i!=0:
-					X_plot.append(instance['{}'.format(i)]['coordinates']['x'])
-					Y_plot.append(instance['{}'.format(i)]['coordinates']['y'])
-				else:
-					X_plot.append(instance['deport']['coordinates']['x'])
-					Y_plot.append(instance['deport']['coordinates']['y'])
-			assert(len(X_plot) == len(Y_plot))	
-			plt.plot(X_plot,Y_plot,zorder=1)
+				plt.plot(X_plot,Y_plot,zorder=1,color='lightgray')		
+						
+	print("######",len(force_order[0]),len(visited_order))
+	assert(len(force_order[0]) == len(visited_order))
 
-	print (plt.style.available)
+	print(plt.style.available)
 	plt.title('Airport Bus Routes',size=14)
 	plt.xlabel('X_coordinates',size=10)
 	plt.ylabel('Y_coordinates',size=10)
 	plt.tight_layout()
+	plt.pause(1)
 	plt.savefig('scatter.png',dpi=600)
-	plt.show()
+
 
 if __name__ == '__main__':
-	current = 40
-	visited(current)
-	get_initload()
-	current_delay = dynamic_delay()
-	record_delay = record_delay + current_delay
-	set_big,force_order,force_memeber = merge_orders(remain_subroutes, visited_order,record_delay)
-	print("*******",visited_order)
-	total_routes, total_cost = get_total(set_big,force_order,force_memeber)
-	print(force_order,force_memeber)
-	routes_result = solve_problem(total_routes, total_cost,set_big)
-	departure = solve_time(routes_result,force_order)
-	get_ordertime(routes_result, departure, force_order)
+	current = 0; force_order = [[],[]]; visited_order=[]; record_delay = []
 	plt.ion()
+	for i,current in enumerate([-10,50]):
+		if i != 0:
+			visited(current)
+			get_initload()
+			current_delay = dynamic_delay()
+			record_delay = record_delay + current_delay
+			set_big,force_order,force_memeber = merge_orders(remain_subroutes, visited_order,record_delay)
+			print("*******",visited_order)
+			total_routes, total_cost = get_total(set_big,force_order,force_memeber)
+			print(force_order,force_memeber)
+			routes_result = solve_problem(total_routes, total_cost,set_big)
+			departure = solve_time(routes_result,force_order)
+			get_ordertime(routes_result, departure, force_order)
+		plot_result(routes_result,current,force_order,visited_order,record_delay,departure)
+		plt.pause(0.01)
 	plt.pause(10)
-	plot_result(routes_result,current,departure,force_order,visited_order)
+	plt.ioff()
 

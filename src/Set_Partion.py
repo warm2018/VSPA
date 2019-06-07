@@ -7,17 +7,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import copy
 from gurobipy import *
+import time
 
+start = time.time()
 Capacity = 7 ## 送机车辆容量
 Terminal = 0 ## 机场终点编号
 Unit_cost = 5 ## 单位距离行驶费用
 Start = 200
 Vehicle_speed = 40
 MAX_TW = 240
-Prob_delay = 0.1
+Prob_delay = 0.2
 
 
-def generate_orders(instance_name='R105'):
+
+def generate_orders(instance_name='N105'):
 	json_data_dir = os.path.join('..', 'data', 'json')
 	print(json_data_dir)
 	json_file = os.path.join(json_data_dir, '{}.json'.format(instance_name))
@@ -27,7 +30,6 @@ def generate_orders(instance_name='R105'):
 		return
 	return instance
  
-
 def get_seedset(orders):
 	order_temp = copy.deepcopy(orders)
 	set_big = {}
@@ -52,8 +54,7 @@ def get_number(combination):
 		total_number += number_list[i]
 		i += 1
 	return total_number
-
-
+ 
 def get_cost(subroute):
 	subroute.append(Terminal)
 	i = 1
@@ -177,7 +178,12 @@ def plot_result(result):
 	X_plot = [instance['{}'.format(i)]['coordinates']['x'] for i in range(1,len(instance)-4+1)]
 	Y_plot = [instance['{}'.format(i)]['coordinates']['y'] for i in range(1,len(instance)-4+1)]
 	plt.scatter(X_plot,Y_plot,zorder=2)
-	plt.scatter(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y'],s=40,color='r',zorder=2)	
+	plt.scatter(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y'],s=40,color='r',zorder=2)
+	plt.annotate('Airport',(instance['deport']['coordinates']['x'],instance['deport']['coordinates']['y']),size=8)
+	for i in range(1,len(instance)-4+1):
+		plt.annotate('{}'.format(i),(instance['{}'.format(i)]['coordinates']['x'],instance['{}'.format(i)]['coordinates']['y']),size=8)
+
+
 	for subroute in result:
 		X_plot = [];Y_plot =[]
 		for i in subroute:
@@ -189,14 +195,23 @@ def plot_result(result):
 				Y_plot.append(instance['deport']['coordinates']['y'])
 		assert(len(X_plot) == len(Y_plot))
 		plt.plot(X_plot,Y_plot,zorder=1)
+
+	plt.title('Order Distribution',size=14)
+	plt.xlim(-10,90)
+	plt.xlim(-10,90)
+	plt.xlabel('X',size=10)
+	plt.ylabel('Y',size=10)
 	plt.show()
 
+
+
 def solve_time(routes_result):
-	departure = []
+	terminal_time = []
 	for subroute in routes_result:
 		time = solve_lp(subroute)
-		departure.append(time)
-	return departure
+		terminal_time.append(time)
+	return terminal_time
+
 
 
 def solve_lp(subroute):
@@ -230,7 +245,29 @@ def get_ordertime(routes_result, time_result):
 		subroute_time.reverse()
 		time_order.append(subroute_time)
 	assert(len(time_order) == len(time_result))
-	return time_order
+	departure = []
+	for depart in time_order:
+		departure.append(depart[0])
+
+	return time_order,departure
+
+def get_resultnumber_cost(result_routes):
+	total_number = []
+	total_cost = []
+	for subroute in result_routes:
+		number = get_number(subroute[:-1])
+		total_number.append(number)
+	for subroute in result_routes:
+		cost = get_cost(subroute[:-1])
+		total_cost.append(cost)
+	return total_number,total_cost
+def get_average(result_number,result_cost):
+	total = Capacity * len(result_number)
+	load_rate = sum(result_number) / total
+	print(load_rate)
+	average_cost = sum(result_cost) / len(result_cost) 
+	return load_rate, average_cost
+
 
 def get_static():
 	generate_orders()
@@ -239,14 +276,23 @@ def get_static():
 	##将orders按照最早时间窗从早到晚排序
 	#orders.sort(key=lambda x: instance['{}'.format(x)]['Earliest'])
 	set_big = get_seedset(orders)
+	print(set_big)
 	total_routes,total_cost =get_total(set_big)
 	assert(len(total_routes) == len(total_cost))
 	routes_result = solve_problem(total_routes, total_cost,set_big)
-	time_result = solve_time(routes_result)
-	order_time = get_ordertime(routes_result, time_result)
+	terminal_time = solve_time(routes_result)
+	order_time,departure = get_ordertime(routes_result, terminal_time)
+	result_number,result_cost = get_resultnumber_cost(routes_result)
+	end = time.time()
+	average_rate,avearage_cost = get_average(result_number,result_cost)
+	print('Waste time is &&&&&&&&&&&&&&&&&&&&&&&&&',average_rate,avearage_cost)
+	print("Waste time is &&&&&&&&&&&&&&&&&&&&&&&&& ",end - start)
 	plot_result(routes_result)
-	return routes_result, order_time
-
+	print('********Routes result********\n',routes_result)
+	print('********Result_number********\n',result_number)
+	print('********Result_number********\n',result_cost)	
+	print('********Departure time in every routes********\n',departure)
+	print('********service time in every order of every routes********',order_time)
 
 if __name__ == '__main__':
 	get_static()

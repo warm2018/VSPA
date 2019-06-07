@@ -181,7 +181,6 @@ class insertion:
 			for i in range(len(demand)):
 				self.demand[i].append(demand[i])
 				#将新产生的需求加入demand列表中去
-
 		end = len(self.demand[0]) - 1
 		order_number = end - start 
 		order = [i for i in range(start,end)]

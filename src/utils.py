@@ -111,7 +111,8 @@ def text2json(customize=False):
                         'Latest': float(values[5]),
                         'service_time': float(values[6]),
                     }
-        customers = ['deport'] + ['{}'.format(x) for x in range(1, 51)]
+                line_number = line_count
+        customers = ['deport'] + ['{}'.format(x) for x in range(1,line_number - 10 + 1)]
         json_data['distance_matrix'] = [[calculate_distance(json_data[customer1], json_data[customer2]) \
             for customer1 in customers] for customer2 in customers]
         json_file_name = '{}.json'.format(json_data['instance_name'])
