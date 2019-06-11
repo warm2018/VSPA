@@ -1,13 +1,6 @@
-#What's this ?
 
-This is a project aims to solve the free pick-up for air-passengers problem which similar to the famous problem VRPTW.
+Please run the script Set_Partion in src Dir, you will see the static result plot
 
-#Algorithm
+Please run the script dynamic in src Dir, you will see the dynacmic result plot
 
-The method is based on Genetic algorithim. 
-
-#How to do use it 
-You can change the cross rules, vary rules and some key parameters for it to suit your model.
-
-#Notations
-Full papers will be available online in the near future.
+if you have any questions about these scripts, please contact me by GitHub (warm2018) or Email :(transliufeng.qq.com)

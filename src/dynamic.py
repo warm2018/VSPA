@@ -11,6 +11,7 @@ if STATIC:
 record_delay = []
 Time_penalty = 1
 
+random.seed(41)
 def visited(current_time):
 	## 让目前的路径随着时间更新,并返回未遍历
 	## + 路径 + 路径的预计出发时 + 接待下一个顾客点之后
@@ -159,7 +160,6 @@ def get_cost(subroute,key=None,force=False):
 	### calculate the total distance for a all subroutes
 	dist_cost = sum(dist) * Unit_cost
 	start_cost = Start
-
 	time_windows_cost = 0
 	if force:
 		current_time = key[1]
@@ -175,7 +175,6 @@ def get_cost(subroute,key=None,force=False):
 		Terminal_time = subroute_time[-1]
 		time_windows_cost = sum(Time_penalty*(Terminal_time - (a_l+ b_u)/2)*(Terminal_time - (a_l+ b_u)/2) for a_l, b_u in zip(expect_low,expect_upper))
 	total_cost = dist_cost + start_cost + time_windows_cost
-
 	return dist_cost + start_cost
 
 def jude_time(combine): ## 判断路径是否符合有效路径约束
@@ -318,14 +317,14 @@ def solve_problem(total_routes,total_cost,set_big):
 
 
 def solve_time(routes_result,force_order):
-	departure = []
+	terminal_time = []
 	for subroute in routes_result:
 		if subroute[0] not in force_order[0]:
 			time = solve_lp(subroute)
-			departure.append(time)
+			terminal_time.append(time)
 		else:
-			departure.append(force_order[1][force_order[0].index(subroute[0])])
-	return departure
+			terminal_time.append(force_order[1][force_order[0].index(subroute[0])])
+	return terminal_time
 
 
 
@@ -350,17 +349,30 @@ def get_ordertime(routes_result,time_result,force_order):
 	for subroute,subterminaltime in zip(routes_result,time_result):
 		subroute_time = [subterminaltime]
 		current_time = subterminaltime
-		for i in range(len(subroute)-1,-1,-1):
-			distance = instance['distance_matrix'][subroute[i]][subroute[i-1]]
-			time = round((distance / Vehicle_speed) * 30,1)
-			current_time = current_time - time
-			subroute_time.append(round(current_time,2))
-			if i == 1:
-				break
-		subroute_time.reverse()
+		if subroute[0] not in force_order:
+			for i in range(len(subroute)-1,-1,-1):
+				distance = instance['distance_matrix'][subroute[i]][subroute[i-1]]
+				time = round((distance / Vehicle_speed) * 30,1)
+				current_time = current_time - time
+				subroute_time.append(round(current_time,2))
+				if i == 1:
+					break
+			subroute_time.reverse()
+		else:
+			for i in range(0,len(subroute)):
+				distance = instance['distance_matrix'][subroute[i]][subroute[i+1]]
+				time = round((distance / Vehicle_speed) * 30,1)
+				current_time = current_time + time
+				subroute_time.append(round(current_time,2))
+				if i == len(subroute) - 2:
+					break
 		time_order.append(subroute_time)
 	assert(len(time_order) == len(time_result))
-	return time_order
+	departure = []
+	for depart in time_order:
+		departure.append(depart[0])
+	return time_order,departure
+
 
 
 def plot_result(result,current,force_order,visited_order,record_delay,departure=None):
@@ -427,7 +439,7 @@ def plot_result(result,current,force_order,visited_order,record_delay,departure=
 if __name__ == '__main__':
 	current = 0; force_order = [[],[]]; visited_order=[]; record_delay = []
 	plt.ion()
-	for i,current in enumerate([-10,50]):
+	for i,current in enumerate([-10,40]):
 		if i != 0:
 			visited(current)
 			get_initload()
@@ -438,8 +450,11 @@ if __name__ == '__main__':
 			total_routes, total_cost = get_total(set_big,force_order,force_memeber)
 			print(force_order,force_memeber)
 			routes_result = solve_problem(total_routes, total_cost,set_big)
-			departure = solve_time(routes_result,force_order)
-			get_ordertime(routes_result, departure, force_order)
+			terminal_time = solve_time(routes_result,force_order)
+			time_order,departure = get_ordertime(routes_result, terminal_time, force_order)
+			print('********Routes result********\n\n',routes_result)	
+			print('********Departure time in every routes********\n\n',departure)
+			print('********service time in every order of every routes********\n\n',time_order)
 		plot_result(routes_result,current,force_order,visited_order,record_delay,departure)
 		plt.pause(0.01)
 	plt.pause(10)

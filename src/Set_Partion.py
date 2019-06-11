@@ -19,8 +19,7 @@ MAX_TW = 240
 Prob_delay = 0.2
 
 
-
-def generate_orders(instance_name='N105'):
+def generate_orders(instance_name='R105'):
 	json_data_dir = os.path.join('..', 'data', 'json')
 	print(json_data_dir)
 	json_file = os.path.join(json_data_dir, '{}.json'.format(instance_name))
@@ -261,6 +260,8 @@ def get_resultnumber_cost(result_routes):
 		cost = get_cost(subroute[:-1])
 		total_cost.append(cost)
 	return total_number,total_cost
+
+	
 def get_average(result_number,result_cost):
 	total = Capacity * len(result_number)
 	load_rate = sum(result_number) / total
