@@ -1,9 +1,13 @@
 
+<<<<<<< HEAD
 #How to use it?
+=======
+>>>>>>> 02f4f41eb66ec602af20850f648e0eb6cc4aad66
 Please run the script Set_Partion in src Dir, you will see the static result plot
 
 Please run the script dynamic in src Dir, you will see the dynacmic result plot
 
+<<<<<<< HEAD
 if you have any questions about these scripts, please contact me by GitHub (warm2018) or Email :(transliufeng.qq.com)
 
 
@@ -17,3 +21,6 @@ if you have any questions about these scripts, please contact me by GitHub (warm
 	***utils.py***    some functions which can help to transfer the txt data to json data.
 	***VNS_2.py & VSPA_1.py***  old algorithm which based on GA algorithm, but it have some small bugs in the realization the VSPA algorithm.
 	***wirte_data.py*** You can use this function to change txt data files efficiently and quikly.  
+=======
+if you have any questions about these scripts, please contact me by GitHub (warm2018) or Email :(transliufeng.qq.com)
+>>>>>>> 02f4f41eb66ec602af20850f648e0eb6cc4aad66
