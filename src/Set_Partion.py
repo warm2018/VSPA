@@ -19,8 +19,7 @@ MAX_TW = 240
 Prob_delay = 0.2
 
 
-
-def generate_orders(instance_name='N105'):
+def generate_orders(instance_name='R105'):
 	json_data_dir = os.path.join('..', 'data', 'json')
 	print(json_data_dir)
 	json_file = os.path.join(json_data_dir, '{}.json'.format(instance_name))
@@ -162,6 +161,7 @@ def solve_problem(total_routes,total_cost,set_big):
 			else:
 				jude[i,j] = 0
 	choose = m.addVars(length,vtype=GRB.BINARY,name="choose")
+
 	for i in wideth:
 		m.addConstr(sum(jude[i,r] * choose[r] for r in range(len(length))) == 1,name='{}'.format(i))
 	m.setObjective(quicksum(total_cost[i] * choose[i] for i in length), GRB.MINIMIZE)
@@ -261,6 +261,8 @@ def get_resultnumber_cost(result_routes):
 		cost = get_cost(subroute[:-1])
 		total_cost.append(cost)
 	return total_number,total_cost
+
+	
 def get_average(result_number,result_cost):
 	total = Capacity * len(result_number)
 	load_rate = sum(result_number) / total
